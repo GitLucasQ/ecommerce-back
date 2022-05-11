@@ -1,4 +1,4 @@
-# PRIMERA PARTE DEL PROYECTO FINAL - CURSO BACKEND CODERHOUSE
+# CURSO BACKEND CODERHOUSE
 
 Este proyecto está desarrollado para el backend de un eCommerce de cualquier rubro comercial. 
 
