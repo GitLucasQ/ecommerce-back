@@ -16,7 +16,11 @@ var _Message = _interopRequireDefault(require("./routes/Message.routes"));
 
 var _Faker = _interopRequireDefault(require("./routes/Faker.routes"));
 
+var _Login = _interopRequireDefault(require("./routes/Login.routes"));
+
 require("./dbmongo");
+
+var _config = require("./config");
 
 var _ProductService = require("./services/ProductService");
 
@@ -26,7 +30,13 @@ var _require = require('http'),
     HttpServer = _require.Server;
 
 var _require2 = require('socket.io'),
-    IOServer = _require2.Server; // APP
+    IOServer = _require2.Server;
+
+var cookieParser = require('cookie-parser');
+
+var session = require('express-session');
+
+var mongoStore = require('connect-mongo'); // APP
 
 
 var app = (0, _express["default"])();
@@ -40,16 +50,58 @@ app.use(_express["default"].urlencoded({
   extended: true
 }));
 app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views'); //FRONTEND
+app.set('views', __dirname + '/views'); // COOKIES
 
-app.get('/', function (_req, res) {
-  res.render('index');
+app.use(cookieParser());
+app.use(session({
+  store: mongoStore.create({
+    mongoUrl: _config.URL_MONGO_SESSION,
+    ttl: 60
+  }),
+  secret: 'skEtpk2w#54w5e4rwe8',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 60000 * 10
+  }
+})); //FRONTEND
+
+app.get('/', function (req, res) {
+  if (req.session.name) {
+    res.render('index', {
+      data: {
+        name: req.session.name
+      }
+    });
+  } else {
+    res.redirect('/login');
+  }
+});
+app.get('/login', function (req, res) {
+  if (req.session.name) {
+    res.redirect('/');
+  } else {
+    res.render('login');
+  }
+});
+app.get('/logout', function (req, res) {
+  if (req.session.name) {
+    res.render('logout', {
+      data: {
+        name: req.session.name
+      }
+    });
+    req.session.destroy(function () {});
+  } else {
+    res.redirect('/login');
+  }
 }); // ROUTES
 
 app.use('/api/product', _Product["default"]);
 app.use('/api/author', _Author["default"]);
 app.use('/api/message', _Message["default"]);
 app.use('/api/productos-test', _Faker["default"]);
+app.use('/api/login', _Login["default"]);
 app.use(function (_req, res) {
   res.status(404).json({
     'error': -2,
