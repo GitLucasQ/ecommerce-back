@@ -4,6 +4,7 @@ import authorRoutes from './routes/Author.routes';
 import messageRoutes from './routes/Message.routes';
 import fakerRoutes from './routes/Faker.routes';
 import loginRoutes from './routes/Login.routes';
+import authRoutes from './routes/Auth.routes';
 import './dbmongo'
 import { URL_MONGO_SESSION } from './config'
 import { ProductService } from './services/ProductService';
@@ -13,6 +14,7 @@ const { Server: IOServer } = require('socket.io');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const mongoStore = require('connect-mongo');
+const passport = require('passport');
 
 // APP
 const app = express();
@@ -28,6 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
+
 // COOKIES
 app.use(cookieParser());
 app.use(session({
@@ -39,6 +42,10 @@ app.use(session({
         maxAge: 60000 * 10
     }
 }));
+
+// PASSPORT
+app.use(passport.initialize());
+app.use(passport.session());
 
 //FRONTEND
 app.get('/', (req, res) => {
@@ -75,6 +82,7 @@ app.use('/api/author', authorRoutes);
 app.use('/api/message', messageRoutes);
 app.use('/api/productos-test', fakerRoutes);
 app.use('/api/login', loginRoutes);
+app.use('/api/auth', authRoutes);
 app.use((_req, res) => {
     res.status(404).json({
         'error': -2,
