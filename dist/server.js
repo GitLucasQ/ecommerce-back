@@ -18,6 +18,8 @@ var _Faker = _interopRequireDefault(require("./routes/Faker.routes"));
 
 var _Login = _interopRequireDefault(require("./routes/Login.routes"));
 
+var _Auth = _interopRequireDefault(require("./routes/Auth.routes"));
+
 require("./dbmongo");
 
 var _config = require("./config");
@@ -36,7 +38,9 @@ var cookieParser = require('cookie-parser');
 
 var session = require('express-session');
 
-var mongoStore = require('connect-mongo'); // APP
+var mongoStore = require('connect-mongo');
+
+var passport = require('passport'); // APP
 
 
 var app = (0, _express["default"])();
@@ -64,44 +68,46 @@ app.use(session({
   cookie: {
     maxAge: 60000 * 10
   }
-})); //FRONTEND
+})); // PASSPORT
 
-app.get('/', function (req, res) {
-  if (req.session.name) {
-    res.render('index', {
-      data: {
-        name: req.session.name
-      }
-    });
-  } else {
-    res.redirect('/login');
-  }
-});
-app.get('/login', function (req, res) {
-  if (req.session.name) {
-    res.redirect('/');
-  } else {
-    res.render('login');
-  }
-});
-app.get('/logout', function (req, res) {
-  if (req.session.name) {
-    res.render('logout', {
-      data: {
-        name: req.session.name
-      }
-    });
-    req.session.destroy(function () {});
-  } else {
-    res.redirect('/login');
-  }
-}); // ROUTES
+require('./controllers/PassportController');
+
+app.use(passport.initialize());
+app.use(passport.session()); //FRONTEND
+// app.get('/', (req, res) => {
+//     console.log(req.session);
+//     if (req.session.passport) {
+//         res.render('index', { data: { name: req.session.passport } })
+//     }
+//     else {
+//         res.redirect('/login');
+//     }
+// });
+// app.get('/login', (req, res) => {
+//     if (req.session.name) {
+//         res.redirect('/');
+//     }
+//     else {
+//         res.render('login')
+//     }
+// });
+// app.get('/logout', (req, res) => {
+//     if (req.session.passport) {
+//         res.render('logout', { data: { name: req.session.passport } });
+//         req.session.destroy(() => { })
+//     }
+//     else {
+//         res.redirect('/login');
+//     }
+// });
+// ROUTES
 
 app.use('/api/product', _Product["default"]);
 app.use('/api/author', _Author["default"]);
 app.use('/api/message', _Message["default"]);
 app.use('/api/productos-test', _Faker["default"]);
-app.use('/api/login', _Login["default"]);
+app.use('/api/auth', _Auth["default"]);
+app.use('/', _Login["default"]);
 app.use(function (_req, res) {
   res.status(404).json({
     'error': -2,
