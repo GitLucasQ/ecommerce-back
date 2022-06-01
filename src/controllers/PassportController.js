@@ -4,34 +4,47 @@ import { UserService } from "../services/UserService";
 
 const passport = require('passport');
 const userService = new UserService();
-
-// PASSPORT IMPLEMENTATION
-// passport.use(User.createStrategy());
-
-const usePassport = () => {
-    let LocalStrategy = require('passport-local').Strategy;
-
-    passport.use(new LocalStrategy(
-        async function (email, password, done) {
-            console.log(email);
-            const foundedUser = await userService.authenticateUser(email, password);
-            if (foundedUser) {
-                return done(null, foundedUser);
-            } else {
-                return done(null, false);
-            }
-        }
-    ));
-
-    passport.serializeUser(function (user, done) {
-        done(null, user);
-    });
-    passport.deserializeUser(function (id, done) {
-        User.findById(id, function (err, user) {
-            done(err, user);
-        });
-    });
-}
+const LocalStrategy = require('passport-local').Strategy;
 
 
-export default usePassport;
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+    const foundedUser = await User.findById(id);
+    done(null, foundedUser);
+});
+
+
+passport.use('local-signin', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true
+}, async (req, email, password, done) => {
+    const foundedUser = await userService.authenticateUser(email, password);
+    if (foundedUser) {
+        return done(null, foundedUser);
+    } else {
+        return done(null, false);
+    }
+}));
+
+
+passport.use('local-signup', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true
+}, async (req, email, password, done) => {
+    const foundedUser = await userService.getUserByEmail(email);
+    if (foundedUser) {
+        return done(null, false);
+    } else {
+        const createdUser = new User();
+        createdUser.email = email;
+        createdUser.password = await createdUser.encryptPassword(password);
+        await createdUser.save();
+
+        return done(null, createdUser);
+    }
+}));

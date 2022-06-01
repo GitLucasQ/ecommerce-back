@@ -19,13 +19,12 @@ const UserSchema = new Schema({
     });
 
 
-UserSchema.statics.encryptPassword = async (password) => {
+UserSchema.methods.encryptPassword = async (password) => {
     const generetedSalt = await bcrypt.genSalt(10);
     return await bcrypt.hash(password, generetedSalt);
 }
 
-UserSchema.statics.validatePassword = async (password, comparePassword) => {
-    console.log('comparando');
+UserSchema.methods.validatePassword = async (password, comparePassword) => {    
     return await bcrypt.compare(password, comparePassword)
 }
 

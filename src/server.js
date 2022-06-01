@@ -44,45 +44,47 @@ app.use(session({
 }));
 
 // PASSPORT
+require('./controllers/PassportController');
 app.use(passport.initialize());
 app.use(passport.session());
 
 //FRONTEND
-app.get('/', (req, res) => {
-    if (req.session.name) {
-        res.render('index', { data: { name: req.session.name } })
-    }
-    else {
-        res.redirect('/login');
-    }
-});
+// app.get('/', (req, res) => {
+//     console.log(req.session);
+//     if (req.session.passport) {
+//         res.render('index', { data: { name: req.session.passport } })
+//     }
+//     else {
+//         res.redirect('/login');
+//     }
+// });
 
-app.get('/login', (req, res) => {
-    if (req.session.name) {
-        res.redirect('/');
-    }
-    else {
-        res.render('login')
-    }
-});
+// app.get('/login', (req, res) => {
+//     if (req.session.name) {
+//         res.redirect('/');
+//     }
+//     else {
+//         res.render('login')
+//     }
+// });
 
-app.get('/logout', (req, res) => {
-    if (req.session.name) {
-        res.render('logout', { data: { name: req.session.name } });
-        req.session.destroy(() => { })
-    }
-    else {
-        res.redirect('/login');
-    }
-});
+// app.get('/logout', (req, res) => {
+//     if (req.session.passport) {
+//         res.render('logout', { data: { name: req.session.passport } });
+//         req.session.destroy(() => { })
+//     }
+//     else {
+//         res.redirect('/login');
+//     }
+// });
 
 // ROUTES
 app.use('/api/product', productRoutes);
 app.use('/api/author', authorRoutes);
 app.use('/api/message', messageRoutes);
 app.use('/api/productos-test', fakerRoutes);
-app.use('/api/login', loginRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/', loginRoutes);
 app.use((_req, res) => {
     res.status(404).json({
         'error': -2,

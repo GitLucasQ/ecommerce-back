@@ -15,11 +15,10 @@ export class UserService extends ContenedorService {
         }
     }
 
-    async authenticateUser(email, password) {
-        console.log('aunthenticating');
+    async authenticateUser(email, password) {        
         try {
             const user = await User.findOne({ email });
-            console.log(user);
+                        
             if (!user) {
                 return null;
             }
