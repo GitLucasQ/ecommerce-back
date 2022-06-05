@@ -1,0 +1,18 @@
+
+export const getProcessInfo = (req, res) => {
+    const { argv, execPath, platform, pid, version } = process;
+    const rss = process.memoryUsage().rss;
+    const folder = process.cwd();
+    const args = argv.slice(2);
+    const data = {
+        args,
+        execPath,
+        platform,
+        pid,
+        version,
+        rss,
+        folder
+    };
+    
+    res.render('info', { data })
+}

@@ -5,6 +5,8 @@ import messageRoutes from './routes/Message.routes';
 import fakerRoutes from './routes/Faker.routes';
 import loginRoutes from './routes/Login.routes';
 import authRoutes from './routes/Auth.routes';
+import infoRoutes from './routes/Info.routes';
+import utilRoutes from './routes/Util.routes';
 import './dbmongo'
 import { URL_MONGO_SESSION } from './config'
 import { ProductService } from './services/ProductService';
@@ -18,7 +20,9 @@ const passport = require('passport');
 
 // APP
 const app = express();
-const PORT = process.env.PORT || 8080;
+const yargs = require('yargs/yargs')(process.argv.slice(2));
+const args = yargs.default({ port: 7070 }).argv;
+const PORT = args.port || 8080;
 
 // SOCKET
 const httpServer = new HttpServer(app);
@@ -48,35 +52,6 @@ require('./controllers/PassportController');
 app.use(passport.initialize());
 app.use(passport.session());
 
-//FRONTEND
-// app.get('/', (req, res) => {
-//     console.log(req.session);
-//     if (req.session.passport) {
-//         res.render('index', { data: { name: req.session.passport } })
-//     }
-//     else {
-//         res.redirect('/login');
-//     }
-// });
-
-// app.get('/login', (req, res) => {
-//     if (req.session.name) {
-//         res.redirect('/');
-//     }
-//     else {
-//         res.render('login')
-//     }
-// });
-
-// app.get('/logout', (req, res) => {
-//     if (req.session.passport) {
-//         res.render('logout', { data: { name: req.session.passport } });
-//         req.session.destroy(() => { })
-//     }
-//     else {
-//         res.redirect('/login');
-//     }
-// });
 
 // ROUTES
 app.use('/api/product', productRoutes);
@@ -85,6 +60,8 @@ app.use('/api/message', messageRoutes);
 app.use('/api/productos-test', fakerRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/', loginRoutes);
+app.use('/info', infoRoutes);
+app.use('/api', utilRoutes);
 app.use((_req, res) => {
     res.status(404).json({
         'error': -2,

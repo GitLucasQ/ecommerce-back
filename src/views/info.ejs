@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-md-center my-4">
+            <div class="col-md-auto">
+                <h3>Información de la aplicación</h3>
+            </div>
+        </div>
+        <table class="table table-hover table-bordered">
+            <thead style="color: #fff;">
+                <tr class="bg-success">
+                    <th>Argumentos de entrada</th>
+                    <th>Path de ejecución</th>
+                    <th>Sistema operativo</th>
+                    <th>Process id</th>
+                    <th>Versión de Node</th>
+                    <th>Carpeta del Proyecto</th>
+                    <th>Memoria total reservada</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>                    
+                    <td><%= data.args %></td>
+                    <td><%= data.execPath %></td>
+                    <td><%= data.platform %></td>
+                    <td><%= data.pid %></td>
+                    <td><%= data.version %></td>
+                    <td><%= data.folder %></td>
+                    <td><%= data.rss %></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
