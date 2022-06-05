@@ -20,6 +20,10 @@ var _Login = _interopRequireDefault(require("./routes/Login.routes"));
 
 var _Auth = _interopRequireDefault(require("./routes/Auth.routes"));
 
+var _Info = _interopRequireDefault(require("./routes/Info.routes"));
+
+var _Util = _interopRequireDefault(require("./routes/Util.routes"));
+
 require("./dbmongo");
 
 var _config = require("./config");
@@ -44,7 +48,13 @@ var passport = require('passport'); // APP
 
 
 var app = (0, _express["default"])();
-var PORT = process.env.PORT || 8080; // SOCKET
+
+var yargs = require('yargs/yargs')(process.argv.slice(2));
+
+var args = yargs["default"]({
+  port: 7070
+}).argv;
+var PORT = args.port || 8080; // SOCKET
 
 var httpServer = new HttpServer(app);
 var io = new IOServer(httpServer); // USES
@@ -73,34 +83,7 @@ app.use(session({
 require('./controllers/PassportController');
 
 app.use(passport.initialize());
-app.use(passport.session()); //FRONTEND
-// app.get('/', (req, res) => {
-//     console.log(req.session);
-//     if (req.session.passport) {
-//         res.render('index', { data: { name: req.session.passport } })
-//     }
-//     else {
-//         res.redirect('/login');
-//     }
-// });
-// app.get('/login', (req, res) => {
-//     if (req.session.name) {
-//         res.redirect('/');
-//     }
-//     else {
-//         res.render('login')
-//     }
-// });
-// app.get('/logout', (req, res) => {
-//     if (req.session.passport) {
-//         res.render('logout', { data: { name: req.session.passport } });
-//         req.session.destroy(() => { })
-//     }
-//     else {
-//         res.redirect('/login');
-//     }
-// });
-// ROUTES
+app.use(passport.session()); // ROUTES
 
 app.use('/api/product', _Product["default"]);
 app.use('/api/author', _Author["default"]);
@@ -108,6 +91,8 @@ app.use('/api/message', _Message["default"]);
 app.use('/api/productos-test', _Faker["default"]);
 app.use('/api/auth', _Auth["default"]);
 app.use('/', _Login["default"]);
+app.use('/info', _Info["default"]);
+app.use('/api', _Util["default"]);
 app.use(function (_req, res) {
   res.status(404).json({
     'error': -2,
