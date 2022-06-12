@@ -22,6 +22,7 @@
                     <th>Argumentos de entrada</th>
                     <th>Path de ejecución</th>
                     <th>Sistema operativo</th>
+                    <th>N° Procesadores</th>
                     <th>Process id</th>
                     <th>Versión de Node</th>
                     <th>Carpeta del Proyecto</th>
@@ -29,14 +30,31 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>                    
-                    <td><%= data.args %></td>
-                    <td><%= data.execPath %></td>
-                    <td><%= data.platform %></td>
-                    <td><%= data.pid %></td>
-                    <td><%= data.version %></td>
-                    <td><%= data.folder %></td>
-                    <td><%= data.rss %></td>
+                <tr>
+                    <td>
+                        <%= data.args %>
+                    </td>
+                    <td>
+                        <%= data.execPath %>
+                    </td>
+                    <td>
+                        <%= data.platform %>
+                    </td>
+                    <td>
+                        <%= data.cpus %>
+                    </td>
+                    <td>
+                        <%= data.pid %>
+                    </td>
+                    <td>
+                        <%= data.version %>
+                    </td>
+                    <td>
+                        <%= data.folder %>
+                    </td>
+                    <td>
+                        <%= data.rss %>
+                    </td>
                 </tr>
             </tbody>
         </table>

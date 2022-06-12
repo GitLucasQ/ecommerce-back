@@ -22,7 +22,8 @@ var getProcessInfo = function getProcessInfo(req, res) {
     pid: pid,
     version: version,
     rss: rss,
-    folder: folder
+    folder: folder,
+    cpus: require('os').cpus().length
   };
   res.render('info', {
     data: data

@@ -11,7 +11,8 @@ export const getProcessInfo = (req, res) => {
         pid,
         version,
         rss,
-        folder
+        folder,
+        cpus: require('os').cpus().length
     };
     
     res.render('info', { data })
