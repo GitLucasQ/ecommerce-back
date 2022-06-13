@@ -14,6 +14,6 @@ export const getProcessInfo = (req, res) => {
         folder,
         cpus: require('os').cpus().length
     };
-    
+
     res.render('info', { data })
-}
+};

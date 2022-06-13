@@ -15,3 +15,15 @@ export const generateRandomNumbers = (req, res) => {
         console.log('Exit whit code: ', code);
     })
 };
+
+
+export const getDatos = (_req, res) => {
+    res.render('datos', {
+        data:
+        {
+            puerto: process.argv[2],
+            pid: process.pid,
+            fecha: new Date().toLocaleString(),
+        }
+    })
+};

@@ -69,7 +69,7 @@ if (cluster.isMaster) {
   var args = yargs["default"]({
     port: 7070
   }).argv;
-  var PORT = args.port || 8080; // SOCKET
+  var PORT = parseInt(process.argv[2]) || 8080; // SOCKET
 
   var httpServer = new HttpServer(app);
   var io = new IOServer(httpServer); // USES

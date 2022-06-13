@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.generateRandomNumbers = void 0;
+exports.getDatos = exports.generateRandomNumbers = void 0;
 
 var generateRandomNumbers = function generateRandomNumbers(req, res) {
   var _require = require('child_process'),
@@ -23,3 +23,15 @@ var generateRandomNumbers = function generateRandomNumbers(req, res) {
 };
 
 exports.generateRandomNumbers = generateRandomNumbers;
+
+var getDatos = function getDatos(_req, res) {
+  res.render('datos', {
+    data: {
+      puerto: process.argv[2],
+      pid: process.pid,
+      fecha: new Date().toLocaleString()
+    }
+  });
+};
+
+exports.getDatos = getDatos;
