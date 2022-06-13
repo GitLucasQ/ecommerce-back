@@ -9,10 +9,10 @@ npm run build
 npm start
 ```
 
-###### Para la utilización de los módulos Forever y PM2 se utilzan los siguientes comandos 
-##### para ejecutarse en la terminal:
+###### Para la utilización de los módulos Forever y PM2 se utilzan los siguientes comandos para ejecutarse en la terminal:
 
-FOREVER
+##### FOREVER
+
 Para ejecutar la aplicación indicando el puerto:
 ```
 forever start dist/server.js 8081
@@ -28,7 +28,7 @@ Para listar los procesos ejecutados:
 forever list
 ```
 
-PM2
+##### PM2
 Para ejecutar la aplicación en modo FORK:
 ```
 pm2 start dist/server.js
@@ -36,15 +36,15 @@ pm2 start dist/server.js
 
 Modo escucha de FORK:
 ```
-pm2 start dist/server.js --watch
+pm2 start dist/server.js --watch -- 8081
 ```
 
 Para ejecutar la aplicación en modo CLUSTER:
 ```
-pm2 start dist/server.js -i max
+pm2 start dist/server.js -i max -- 8082
 ```
 
 Modo escucha de CLUSTER:
 ```
-pm2 start dist/server.js -i max --watch
+pm2 start dist/server.js -i max --watch -- 8082
 ```
