@@ -2,6 +2,7 @@ import { ContenedorService } from "./ContenedorMongo";
 import Message from '../models/Message';
 import { AuthorService } from "./AuthorService";
 import { ANONYMOUS_AVATAR } from '../config';
+import logger from "../shared/logger";
 
 export class MessageService extends ContenedorService {
 
@@ -13,7 +14,7 @@ export class MessageService extends ContenedorService {
         try {
             return await this.getAll();
         } catch (error) {
-            console.error('Sucedió un errror', error);
+            logger.error('Sucedió un errror', error);
         }
     }
 
@@ -21,7 +22,7 @@ export class MessageService extends ContenedorService {
         try {
             return await this.getById(id);
         } catch (error) {
-            console.error('Sucedió un errror', error);
+            logger.error('Sucedió un errror', error);
         }
     }
 
@@ -29,7 +30,7 @@ export class MessageService extends ContenedorService {
         try {
             return await this.create(data);
         } catch (error) {
-            console.error('Sucedió un error: ', error);
+            logger.error('Sucedió un error: ', error);
         }
     }
 
@@ -37,7 +38,7 @@ export class MessageService extends ContenedorService {
         try {
             return await this.getAll().populate('author');
         } catch (error) {
-            console.error('Sucedió un error: ', error);
+            logger.error('Sucedió un error: ', error);
         }
     }
 
@@ -58,7 +59,7 @@ export class MessageService extends ContenedorService {
                 return await this.createMessage({ author: anonymousAuthor._id, text: data.text });
             }
         } catch (error) {
-            console.error('Sucedió un error: ', error);
+            logger.error('Sucedió un error: ', error);
         }
     }
 }
