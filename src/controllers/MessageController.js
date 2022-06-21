@@ -1,13 +1,15 @@
 import { AuthorService } from '../services/AuthorService';
 import { MessageService } from '../services/MessageService';
+import logger from '../shared/logger';
 
 const messageService = new MessageService();
 const authorService = new AuthorService();
 
-export const getAllMessages = async (_req, res) => {
+export const getAllMessages = async (req, res) => {
     const messages = await messageService.getAllMessages();
 
     res.json(messages);
+    logger.info(`${req.method} ${req.originalUrl} - ${new Date().toLocaleString()}`);
 };
 
 export const createNewMessage = async (req, res) => {
@@ -15,12 +17,14 @@ export const createNewMessage = async (req, res) => {
     const createdMessage = await messageService.createMessage({ author, text });
 
     res.status(201).json(createdMessage);
+    logger.info(`${req.method} ${req.originalUrl} - ${new Date().toLocaleString()}`);
 };
 
-export const getChatMessages = async (_req, res) => {
+export const getChatMessages = async (req, res) => {
     const chat = await messageService.getChatMessages();
 
     res.status(200).json(chat);
+    logger.info(`${req.method} ${req.originalUrl} - ${new Date().toLocaleString()}`);
 };
 
 export const addMessageChat = async (req, res) => {
@@ -34,4 +38,5 @@ export const addMessageChat = async (req, res) => {
     }
 
     res.status(200).json('Mensaje enviado con éxito');
+    logger.info(`${req.method} ${req.originalUrl} - ${new Date().toLocaleString()}`);
 }

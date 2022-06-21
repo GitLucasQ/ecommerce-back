@@ -15,11 +15,13 @@ var _AuthorService = require("../services/AuthorService");
 
 var _MessageService = require("../services/MessageService");
 
+var _logger = _interopRequireDefault(require("../shared/logger"));
+
 var messageService = new _MessageService.MessageService();
 var authorService = new _AuthorService.AuthorService();
 
 var getAllMessages = /*#__PURE__*/function () {
-  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(_req, res) {
+  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
     var messages;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
@@ -32,7 +34,9 @@ var getAllMessages = /*#__PURE__*/function () {
             messages = _context.sent;
             res.json(messages);
 
-          case 4:
+            _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
+
+          case 5:
           case "end":
             return _context.stop();
         }
@@ -66,7 +70,9 @@ var createNewMessage = /*#__PURE__*/function () {
             createdMessage = _context2.sent;
             res.status(201).json(createdMessage);
 
-          case 5:
+            _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
+
+          case 6:
           case "end":
             return _context2.stop();
         }
@@ -82,7 +88,7 @@ var createNewMessage = /*#__PURE__*/function () {
 exports.createNewMessage = createNewMessage;
 
 var getChatMessages = /*#__PURE__*/function () {
-  var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(_req, res) {
+  var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
     var chat;
     return _regenerator["default"].wrap(function _callee3$(_context3) {
       while (1) {
@@ -95,7 +101,9 @@ var getChatMessages = /*#__PURE__*/function () {
             chat = _context3.sent;
             res.status(200).json(chat);
 
-          case 4:
+            _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
+
+          case 5:
           case "end":
             return _context3.stop();
         }
@@ -140,7 +148,9 @@ var addMessageChat = /*#__PURE__*/function () {
           case 8:
             res.status(200).json('Mensaje enviado con éxito');
 
-          case 9:
+            _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
+
+          case 10:
           case "end":
             return _context4.stop();
         }

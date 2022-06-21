@@ -1,9 +1,13 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getProcessInfo = void 0;
+
+var _logger = _interopRequireDefault(require("../shared/logger"));
 
 var getProcessInfo = function getProcessInfo(req, res) {
   var _process = process,
@@ -28,6 +32,8 @@ var getProcessInfo = function getProcessInfo(req, res) {
   res.render('info', {
     data: data
   });
+
+  _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
 };
 
 exports.getProcessInfo = getProcessInfo;

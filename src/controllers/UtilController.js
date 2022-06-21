@@ -1,9 +1,11 @@
+import logger from '../shared/logger';
+
 
 export const generateRandomNumbers = (req, res) => {
     const { fork } = require('child_process');
     const cant = req.query.cant === undefined ? 100000000 : req.query.cant;
 
-    const forked = fork(__dirname + '/child.js');
+    /* const forked = fork(__dirname + '/child.js');
 
     forked.send(cant);
 
@@ -13,11 +15,13 @@ export const generateRandomNumbers = (req, res) => {
 
     forked.on('exit', code => {
         console.log('Exit whit code: ', code);
-    })
+    }); */
+
+    logger.info(`${req.method} ${req.originalUrl} - ${new Date().toLocaleString()}`);
 };
 
 
-export const getDatos = (_req, res) => {
+export const getDatos = (req, res) => {
     res.render('datos', {
         data:
         {
@@ -25,5 +29,7 @@ export const getDatos = (_req, res) => {
             pid: process.pid,
             fecha: new Date().toLocaleString(),
         }
-    })
+    });
+
+    logger.info(`${req.method} ${req.originalUrl} - ${new Date().toLocaleString()}`);
 };

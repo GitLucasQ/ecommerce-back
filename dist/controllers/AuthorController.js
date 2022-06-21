@@ -13,6 +13,8 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _AuthorService = require("../services/AuthorService");
 
+var _logger = _interopRequireDefault(require("../shared/logger"));
+
 var authorService = new _AuthorService.AuthorService();
 
 var createAuthor = /*#__PURE__*/function () {
@@ -38,7 +40,9 @@ var createAuthor = /*#__PURE__*/function () {
             createdAuthor = _context.sent;
             res.status(201).json(createdAuthor);
 
-          case 5:
+            _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
+
+          case 6:
           case "end":
             return _context.stop();
         }
@@ -54,7 +58,7 @@ var createAuthor = /*#__PURE__*/function () {
 exports.createAuthor = createAuthor;
 
 var getAllAuthors = /*#__PURE__*/function () {
-  var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(_req, res) {
+  var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res) {
     var authors;
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
@@ -67,7 +71,9 @@ var getAllAuthors = /*#__PURE__*/function () {
             authors = _context2.sent;
             res.json(authors);
 
-          case 4:
+            _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
+
+          case 5:
           case "end":
             return _context2.stop();
         }

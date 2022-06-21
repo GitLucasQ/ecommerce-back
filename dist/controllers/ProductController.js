@@ -13,10 +13,12 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _ProductService = require("../services/ProductService");
 
+var _logger = _interopRequireDefault(require("../shared/logger"));
+
 var productService = new _ProductService.ProductService();
 
 var getAllProducts = /*#__PURE__*/function () {
-  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(_req, res) {
+  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
     var products;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
@@ -29,7 +31,9 @@ var getAllProducts = /*#__PURE__*/function () {
             products = _context.sent;
             res.json(products);
 
-          case 4:
+            _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
+
+          case 5:
           case "end":
             return _context.stop();
         }
@@ -59,7 +63,9 @@ var getProductById = /*#__PURE__*/function () {
             foundedProduct = _context2.sent;
             res.json(foundedProduct);
 
-          case 5:
+            _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
+
+          case 6:
           case "end":
             return _context2.stop();
         }
@@ -94,7 +100,9 @@ var createNewProduct = /*#__PURE__*/function () {
             createdProduct = _context3.sent;
             res.status(201).json(createdProduct);
 
-          case 5:
+            _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
+
+          case 6:
           case "end":
             return _context3.stop();
         }
@@ -130,7 +138,9 @@ var updateProduct = /*#__PURE__*/function () {
             updatedProduct = _context4.sent;
             res.status(200).json(updatedProduct);
 
-          case 6:
+            _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
+
+          case 7:
           case "end":
             return _context4.stop();
         }
@@ -159,7 +169,9 @@ var deleteProduct = /*#__PURE__*/function () {
           case 3:
             res.status(200).send('Producto eliminado con éxito');
 
-          case 4:
+            _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
+
+          case 5:
           case "end":
             return _context5.stop();
         }

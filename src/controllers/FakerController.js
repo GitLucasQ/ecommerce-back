@@ -1,9 +1,10 @@
 import { faker } from '@faker-js/faker';
+import logger from '../shared/logger';
 
 const { commerce, image } = faker;
 
 
-export const generateProducts = (_req, res) => {
+export const generateProducts = (req, res) => {
     let fakeProduct = [];
 
     for (let index = 0; index < 5; index++) {
@@ -15,4 +16,5 @@ export const generateProducts = (_req, res) => {
     }
 
     res.json(fakeProduct);
+    logger.info(`${req.method} ${req.originalUrl} - ${new Date().toLocaleString()}`);
 };

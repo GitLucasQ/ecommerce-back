@@ -1,0 +1,5 @@
+{"level":"error","message":"Ruta GET /nada no existente"}
+{"level":"error","message":"Ruta GET /api/random/cant?20 no existente"}
+{"level":"error","message":"Ruta GET /api/randoms/cant?20 no existente"}
+{"level":"error","message":"Ruta GET /api/randoms/cant=20 no existente"}
+{"level":"error","message":"Ruta GET /api/randoms=cant?200 no existente"}

@@ -1,4 +1,5 @@
 import { UserService } from "../services/UserService";
+import logger from "../shared/logger";
 
 const userService = new UserService();
 
@@ -10,6 +11,7 @@ export const principal = async (req, res) => {
     else {
         res.redirect('/login');
     }
+    logger.info(`${req.method} ${req.originalUrl} - ${new Date().toLocaleString()}`);
 };
 
 export const loginUser = (req, res) => {
@@ -19,10 +21,12 @@ export const loginUser = (req, res) => {
     else {
         res.render('login')
     }
+    logger.info(`${req.method} ${req.originalUrl} - ${new Date().toLocaleString()}`);
 };
 
-export const failLogin = (_req, res) => {
+export const failLogin = (req, res) => {
     res.render('faillogin');
+    logger.info(`${req.method} ${req.originalUrl} - ${new Date().toLocaleString()}`);
 };
 
 export const logoutUser = async (req, res) => {
@@ -34,12 +38,15 @@ export const logoutUser = async (req, res) => {
     else {
         res.redirect('/login');
     }
+    logger.info(`${req.method} ${req.originalUrl} - ${new Date().toLocaleString()}`);
 };
 
 export const registerUser = async (req, res) => {
     res.render('register');
+    logger.info(`${req.method} ${req.originalUrl} - ${new Date().toLocaleString()}`);
 };
 
-export const failSignup = (_req, res) => {
+export const failSignup = (req, res) => {
     res.render('failsignup');
+    logger.info(`${req.method} ${req.originalUrl} - ${new Date().toLocaleString()}`);
 };

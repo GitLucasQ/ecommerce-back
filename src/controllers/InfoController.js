@@ -1,3 +1,5 @@
+import logger from '../shared/logger';
+
 
 export const getProcessInfo = (req, res) => {
     const { argv, execPath, platform, pid, version } = process;
@@ -15,5 +17,6 @@ export const getProcessInfo = (req, res) => {
         cpus: require('os').cpus().length
     };
 
-    res.render('info', { data })
+    res.render('info', { data });
+    logger.info(`${req.method} ${req.originalUrl} - ${new Date().toLocaleString()}`);
 };

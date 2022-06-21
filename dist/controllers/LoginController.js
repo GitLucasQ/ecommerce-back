@@ -13,6 +13,8 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _UserService = require("../services/UserService");
 
+var _logger = _interopRequireDefault(require("../shared/logger"));
+
 var userService = new _UserService.UserService();
 
 var principal = /*#__PURE__*/function () {
@@ -44,6 +46,9 @@ var principal = /*#__PURE__*/function () {
             res.redirect('/login');
 
           case 8:
+            _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
+
+          case 9:
           case "end":
             return _context.stop();
         }
@@ -64,12 +69,16 @@ var loginUser = function loginUser(req, res) {
   } else {
     res.render('login');
   }
+
+  _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
 };
 
 exports.loginUser = loginUser;
 
-var failLogin = function failLogin(_req, res) {
+var failLogin = function failLogin(req, res) {
   res.render('faillogin');
+
+  _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
 };
 
 exports.failLogin = failLogin;
@@ -104,6 +113,9 @@ var logoutUser = /*#__PURE__*/function () {
             res.redirect('/login');
 
           case 9:
+            _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
+
+          case 10:
           case "end":
             return _context2.stop();
         }
@@ -126,7 +138,9 @@ var registerUser = /*#__PURE__*/function () {
           case 0:
             res.render('register');
 
-          case 1:
+            _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
+
+          case 2:
           case "end":
             return _context3.stop();
         }
@@ -141,8 +155,10 @@ var registerUser = /*#__PURE__*/function () {
 
 exports.registerUser = registerUser;
 
-var failSignup = function failSignup(_req, res) {
+var failSignup = function failSignup(req, res) {
   res.render('failsignup');
+
+  _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
 };
 
 exports.failSignup = failSignup;
