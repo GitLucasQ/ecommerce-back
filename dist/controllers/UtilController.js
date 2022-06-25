@@ -15,11 +15,11 @@ var generateRandomNumbers = function generateRandomNumbers(req, res) {
 
   var cant = req.query.cant === undefined ? 100000000 : req.query.cant;
   /* const forked = fork(__dirname + '/child.js');
-   forked.send(cant);
-   forked.on('message', (msj) => {
+    forked.send(cant);
+    forked.on('message', (msj) => {
       res.render('randoms', { data: msj });
   });
-   forked.on('exit', code => {
+    forked.on('exit', code => {
       console.log('Exit whit code: ', code);
   }); */
 
