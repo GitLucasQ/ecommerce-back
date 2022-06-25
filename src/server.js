@@ -26,7 +26,7 @@ const cluster = require('cluster');
 const app = express();
 const yargs = require('yargs/yargs')(process.argv.slice(2));
 const args = yargs.default({ port: 7070 }).argv;
-const PORT = parseInt(process.argv[2]) || 8080;
+const PORT = parseInt(process.argv[2]) || process.env.PORT;
 
 // SOCKET
 const httpServer = new HttpServer(app);

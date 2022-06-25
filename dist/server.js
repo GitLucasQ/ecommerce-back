@@ -60,7 +60,7 @@ var yargs = require('yargs/yargs')(process.argv.slice(2));
 var args = yargs["default"]({
   port: 7070
 }).argv;
-var PORT = parseInt(process.argv[2]) || 8080; // SOCKET
+var PORT = parseInt(process.argv[2]) || process.env.PORT; // SOCKET
 
 var httpServer = new HttpServer(app);
 var io = new IOServer(httpServer); // USES
