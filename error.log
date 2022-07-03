@@ -3,3 +3,16 @@
 {"level":"error","message":"Ruta GET /api/randoms/cant?20 no existente"}
 {"level":"error","message":"Ruta GET /api/randoms/cant=20 no existente"}
 {"level":"error","message":"Ruta GET /api/randoms=cant?200 no existente"}
+{"level":"error","message":"Ruta GET /favicon.ico no existente"}
+{"level":"error","message":"Ruta POST /api/auth/signp no existente"}
+{"level":"error","message":"Ruta GET /public no existente"}
+{"level":"error","message":"Ruta GET /img no existente"}
+{"level":"error","message":"Ruta GET /img no existente"}
+{"level":"error","message":"Ruta GET /img no existente"}
+{"level":"error","message":"Ruta GET /img no existente"}
+{"level":"error","message":"Ruta GET /img/ no existente"}
+{"level":"error","message":"Ruta GET /img/ no existente"}
+{"level":"error","message":"Ruta POST /login no existente"}
+{"level":"error","message":"Ruta POST /login no existente"}
+{"level":"error","message":"Ruta POST /login no existente"}
+{"level":"error","message":"Ruta POST /login no existente"}
