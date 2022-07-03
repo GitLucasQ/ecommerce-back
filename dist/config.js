@@ -12,6 +12,7 @@ module.exports = {
   TWILIO_ID: process.env.TWILIO_ID,
   TWILIO_TOKEN: process.env.TWILIO_TOKEN,
   TWILIO_NUMBER: process.env.TWILIO_NUMBER,
-  ADMIN_PHONE: '+51937888325',
-  TWILIO_WSP_NUMBER: process.env.TWILIO_WSP_NUMBER
+  TWILIO_WSP_NUMBER: process.env.TWILIO_WSP_NUMBER,
+  ADMIN_PHONE: process.env.ADMIN_PHONE,
+  ADMIN_EMAIL: process.env.ADMIN_EMAIL
 };

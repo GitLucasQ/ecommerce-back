@@ -1,5 +1,5 @@
 import { createTransport } from 'nodemailer';
-import { MAIL_ACCOUNT, MAIL_PASSWORD } from '../config';
+import { MAIL_ACCOUNT, MAIL_PASSWORD, ADMIN_EMAIL } from '../config';
 import logger from '../shared/logger';
 
 const transporter = createTransport({
@@ -15,7 +15,7 @@ const transporter = createTransport({
 export const sendRegisterMail = async (userData) => {
     const mailOptions = {
         from: 'Ecommerce notificaciones',
-        to: MAIL_ACCOUNT,
+        to: ADMIN_EMAIL,
         subject: `Nuevo registro de usuario - ${userData.name}`,
         html: `
             <style>
@@ -94,7 +94,7 @@ export const sendMailConfirmShop = async (cartData, userData) => {
 
     const mailOptions = {
         from: 'Ecommerce Notificaciones',
-        to: MAIL_ACCOUNT,
+        to: ADMIN_EMAIL,
         subject: `Nuevo pedido de ${userData.name} <${userData.email}>`,
         html: `
             <style>
