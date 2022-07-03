@@ -24,6 +24,8 @@ var _Info = _interopRequireDefault(require("./routes/Info.routes"));
 
 var _Util = _interopRequireDefault(require("./routes/Util.routes"));
 
+var _Cart = _interopRequireDefault(require("./routes/Cart.routes"));
+
 require("./dbmongo");
 
 var _config = require("./config");
@@ -100,6 +102,8 @@ app.use('/api/auth', _Auth["default"]);
 app.use('/', _Login["default"]);
 app.use('/info', _Info["default"]);
 app.use('/api', _Util["default"]);
+app.use('/api/cart', _Cart["default"]);
+app.use('/img', _express["default"]["static"](__dirname + '/public/images/'));
 app.use(function (req, res) {
   res.status(404).json({
     'error': -2,

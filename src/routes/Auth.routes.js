@@ -24,7 +24,7 @@ const multerFilter = (req, file, cb) => {
         cb(new Error('No es una imagen'), false);
     }
 }
-// const upload = multer({ dest: './src/public/images' });
+
 const upload = multer({
     storage: multerStorage,
     fileFilter: multerFilter

@@ -1,5 +1,6 @@
 import User from "../models/User";
 import { UserService } from "../services/UserService";
+import {sendRegisterMail} from '../util/MailNotification';
 
 
 const passport = require('passport');
@@ -55,6 +56,8 @@ passport.use('local-signup', new LocalStrategy({
         createdUser.phone = phone;
         createdUser.image = filename.split('/')[1];
         await createdUser.save();
+
+        await sendRegisterMail(createdUser);
 
         return done(null, createdUser);
     }

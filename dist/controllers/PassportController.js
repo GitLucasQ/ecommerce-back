@@ -10,6 +10,8 @@ var _User = _interopRequireDefault(require("../models/User"));
 
 var _UserService = require("../services/UserService");
 
+var _MailNotification = require("../util/MailNotification");
+
 var passport = require('passport');
 
 var userService = new _UserService.UserService();
@@ -87,42 +89,58 @@ passport.use('local-signin', new LocalStrategy({
 passport.use('local-signup', new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password',
+  nameField: 'name',
+  addressField: 'address',
+  ageField: 'age',
+  phoneField: 'phone',
   passReqToCallback: true
 }, /*#__PURE__*/function () {
   var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, email, password, done) {
-    var foundedUser, createdUser;
+    var _req$body, name, address, age, phone, filename, foundedUser, createdUser;
+
     return _regenerator["default"].wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            _context3.next = 2;
+            _req$body = req.body, name = _req$body.name, address = _req$body.address, age = _req$body.age, phone = _req$body.phone;
+            filename = req.file.filename;
+            _context3.next = 4;
             return userService.getUserByEmail(email);
 
-          case 2:
+          case 4:
             foundedUser = _context3.sent;
 
             if (!foundedUser) {
-              _context3.next = 7;
+              _context3.next = 9;
               break;
             }
 
             return _context3.abrupt("return", done(null, false));
 
-          case 7:
+          case 9:
             createdUser = new _User["default"]();
             createdUser.email = email;
-            _context3.next = 11;
+            _context3.next = 13;
             return createdUser.encryptPassword(password);
 
-          case 11:
+          case 13:
             createdUser.password = _context3.sent;
-            _context3.next = 14;
+            createdUser.name = name;
+            createdUser.address = address;
+            createdUser.age = age;
+            createdUser.phone = phone;
+            createdUser.image = filename.split('/')[1];
+            _context3.next = 21;
             return createdUser.save();
 
-          case 14:
+          case 21:
+            _context3.next = 23;
+            return (0, _MailNotification.sendRegisterMail)(createdUser);
+
+          case 23:
             return _context3.abrupt("return", done(null, createdUser));
 
-          case 15:
+          case 24:
           case "end":
             return _context3.stop();
         }

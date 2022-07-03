@@ -7,5 +7,6 @@ const router = new Router();
 
 
 router.post('/addproduct', CartController.addNewProduct);
+router.post('/confirmshop', CartController.confirmShop);
 
 export default router;
