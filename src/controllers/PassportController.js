@@ -41,7 +41,7 @@ passport.use('local-signup', new LocalStrategy({
     phoneField: 'phone',
     passReqToCallback: true
 }, async (req, email, password, done) => {    
-    const { name, address, age, phone } = req.body;
+    const { name, address, age, phone } = req.body;    
     const { filename } = req.file;
     const foundedUser = await userService.getUserByEmail(email);
     if (foundedUser) {

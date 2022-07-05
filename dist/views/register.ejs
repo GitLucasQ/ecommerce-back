@@ -45,6 +45,7 @@
                         <div class="form-group mx-sm-3 mb-2">
                             <label for="phone">Teléfono</label>
                             <input type="tel" class="form-control" name="phone" id="phone" value="937888325">
+                            <!-- <input type="hidden" name="phone" id="phone"> -->
                         </div>
                         <div class="alert alert-danger" style="display: none;"></div>
                         <div class="form-group mx-sm-3 mb-2">
@@ -78,6 +79,9 @@
         else {
             console.log(phoneNumber);
             infoAlert.style.display = "none";
+            phoneInputField.value = phoneNumber;
+            // document.querySelector("#phone").value = phoneNumber;
+            // console.log(document.querySelector("#phone").value);
         }
     });
 </script>
