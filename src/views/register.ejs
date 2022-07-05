@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 </head>
 
 <body>
@@ -18,7 +20,7 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    <form class="form" method="POST" action="/api/auth/signup" role="form">
+                    <form class="form" method="POST" action="/api/auth/signup" role="form" enctype="multipart/form-data">
                         <div class="form-group mx-sm-3 mb-2">
                             <label for="email">Email</label>
                             <input type="text" class="form-control" name="email" id="email" placeholder="Email">
@@ -28,6 +30,28 @@
                             <input type="password" class="form-control" name="password" id="password"
                                 placeholder="Contraseña">
                         </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="name">Nombres</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Nombres">
+                        </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="address">Dirección</label>
+                            <input type="text" class="form-control" name="address" id="address" placeholder="Dirección">
+                        </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="age">Edad</label>
+                            <input type="number" class="form-control" name="age" id="age" min="18">
+                        </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" class="form-control" name="phone" id="phone" value="937888325">
+                            <!-- <input type="hidden" name="phone" id="phone"> -->
+                        </div>
+                        <div class="alert alert-danger" style="display: none;"></div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="photo">Foto</label>
+                            <input type="file" class="form-control" name="photo" id="photo">
+                        </div>
                         <button type="submit" class="btn btn-success m-4">Enviar</button>
                     </form>
                     <a type="button" href="/login" class="btn btn-success m-4">Ir a login</a>
@@ -36,5 +60,30 @@
         </div>
     </div>
 </body>
+
+<script>
+    const infoAlert = document.querySelector(".alert-danger");
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+
+    phoneInputField.addEventListener("blur", function () {
+        const phoneNumber = phoneInput.getNumber();
+
+        if (!phoneInput.isValidNumber()) {
+            infoAlert.style.display = "";
+            infoAlert.innerHTML = "Debe ingresar un número de teléfono válido";
+        }
+        else {
+            console.log(phoneNumber);
+            infoAlert.style.display = "none";
+            phoneInputField.value = phoneNumber;
+            // document.querySelector("#phone").value = phoneNumber;
+            // console.log(document.querySelector("#phone").value);
+        }
+    });
+</script>
 
 </html>
