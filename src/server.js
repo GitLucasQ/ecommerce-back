@@ -7,6 +7,7 @@ import loginRoutes from './routes/Login.routes';
 import authRoutes from './routes/Auth.routes';
 import infoRoutes from './routes/Info.routes';
 import utilRoutes from './routes/Util.routes';
+import cartRoutes from './routes/Cart.routes';
 import './dbmongo'
 import { URL_MONGO_SESSION } from './config'
 import { ProductService } from './services/ProductService';
@@ -67,6 +68,8 @@ app.use('/api/auth', authRoutes);
 app.use('/', loginRoutes);
 app.use('/info', infoRoutes);
 app.use('/api', utilRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/img', express.static(__dirname + '/public/images/'));
 app.use((req, res) => {
     res.status(404).json({
         'error': -2,

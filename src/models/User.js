@@ -11,6 +11,25 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    name: {
+        type: String,
+        required: true,
+    },
+    address: {
+        type: String,
+        required: true,
+    },
+    age: {
+        type: Number,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    image: {
+        type: String
     }
 },
     {
@@ -24,7 +43,7 @@ UserSchema.methods.encryptPassword = async (password) => {
     return await bcrypt.hash(password, generetedSalt);
 }
 
-UserSchema.methods.validatePassword = async (password, comparePassword) => {    
+UserSchema.methods.validatePassword = async (password, comparePassword) => {
     return await bcrypt.compare(password, comparePassword)
 }
 
