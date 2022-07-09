@@ -1,13 +1,4 @@
 import express from 'express';
-import productRoutes from './routes/Product.routes';
-import authorRoutes from './routes/Author.routes';
-import messageRoutes from './routes/Message.routes';
-import fakerRoutes from './routes/Faker.routes';
-import loginRoutes from './routes/Login.routes';
-import authRoutes from './routes/Auth.routes';
-import infoRoutes from './routes/Info.routes';
-import utilRoutes from './routes/Util.routes';
-import cartRoutes from './routes/Cart.routes';
 import './dbmongo'
 import { URL_MONGO_SESSION } from './config'
 import { ProductService } from './services/ProductService';
@@ -21,6 +12,7 @@ const session = require('express-session');
 const mongoStore = require('connect-mongo');
 const passport = require('passport');
 const cluster = require('cluster');
+import routes from './routes';
 
 
 // APP
@@ -60,15 +52,7 @@ app.use(passport.session());
 
 
 // ROUTES
-app.use('/api/product', productRoutes);
-app.use('/api/author', authorRoutes);
-app.use('/api/message', messageRoutes);
-app.use('/api/productos-test', fakerRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/', loginRoutes);
-app.use('/info', infoRoutes);
-app.use('/api', utilRoutes);
-app.use('/api/cart', cartRoutes);
+app.use(routes);
 app.use('/img', express.static(__dirname + '/public/images/'));
 app.use((req, res) => {
     res.status(404).json({

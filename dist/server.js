@@ -8,24 +8,6 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _express = _interopRequireDefault(require("express"));
 
-var _Product = _interopRequireDefault(require("./routes/Product.routes"));
-
-var _Author = _interopRequireDefault(require("./routes/Author.routes"));
-
-var _Message = _interopRequireDefault(require("./routes/Message.routes"));
-
-var _Faker = _interopRequireDefault(require("./routes/Faker.routes"));
-
-var _Login = _interopRequireDefault(require("./routes/Login.routes"));
-
-var _Auth = _interopRequireDefault(require("./routes/Auth.routes"));
-
-var _Info = _interopRequireDefault(require("./routes/Info.routes"));
-
-var _Util = _interopRequireDefault(require("./routes/Util.routes"));
-
-var _Cart = _interopRequireDefault(require("./routes/Cart.routes"));
-
 require("./dbmongo");
 
 var _config = require("./config");
@@ -37,6 +19,8 @@ var _MessageService = require("./services/MessageService");
 var _compression = _interopRequireDefault(require("compression"));
 
 var _logger = _interopRequireDefault(require("./shared/logger"));
+
+var _routes = _interopRequireDefault(require("./routes"));
 
 var _require = require('http'),
     HttpServer = _require.Server;
@@ -52,9 +36,9 @@ var mongoStore = require('connect-mongo');
 
 var passport = require('passport');
 
-var cluster = require('cluster'); // APP
+var cluster = require('cluster');
 
-
+// APP
 var app = (0, _express["default"])();
 
 var yargs = require('yargs/yargs')(process.argv.slice(2));
@@ -94,15 +78,7 @@ require('./controllers/PassportController');
 app.use(passport.initialize());
 app.use(passport.session()); // ROUTES
 
-app.use('/api/product', _Product["default"]);
-app.use('/api/author', _Author["default"]);
-app.use('/api/message', _Message["default"]);
-app.use('/api/productos-test', _Faker["default"]);
-app.use('/api/auth', _Auth["default"]);
-app.use('/', _Login["default"]);
-app.use('/info', _Info["default"]);
-app.use('/api', _Util["default"]);
-app.use('/api/cart', _Cart["default"]);
+app.use(_routes["default"]);
 app.use('/img', _express["default"]["static"](__dirname + '/public/images/'));
 app.use(function (req, res) {
   res.status(404).json({
