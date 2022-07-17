@@ -3,8 +3,7 @@ import logger from "../shared/logger";
 
 const userService = new UserService();
 
-export const principal = async (req, res) => {
-    console.log(req.session);
+export const principal = async (req, res) => {    
     if (req.session.passport) {
         const foundedUser = await userService.getById(req.session.passport.user);
         res.render('index', { data: { name: foundedUser.email } })

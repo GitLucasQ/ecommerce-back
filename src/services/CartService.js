@@ -1,6 +1,9 @@
 import { ContenedorService } from "./ContenedorMongo";
 import Cart from '../models/Cart';
 import logger from "../shared/logger";
+import { CustomError } from "../shared/CustomError";
+
+let instance = null;
 
 export class CartService extends ContenedorService {
 
@@ -8,11 +11,19 @@ export class CartService extends ContenedorService {
         super(Cart);
     }
 
+    static getInstance() {
+        if (!instance) {
+            instance = new CartService();
+        }
+
+        return instance;
+    }
+
     async findCart(user) {
         try {
             return await Cart.findOne({ user });
         } catch (error) {
-            logger.error('Sucedió un error', error);
+            logger.error(new CustomError(500, error));
         }
     }
 
@@ -20,7 +31,7 @@ export class CartService extends ContenedorService {
         try {
             return await this.create(data);
         } catch (error) {
-            logger.error('Sucedió un error', error);
+            logger.error(new CustomError(500, error));
         }
     }
 }
