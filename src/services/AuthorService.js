@@ -1,17 +1,28 @@
 import { ContenedorService } from "./ContenedorMongo";
 import Author from '../models/Author';
+import logger from "../shared/logger";
+import { CustomError } from "../shared/CustomError";
 
+let instance = null;
 export class AuthorService extends ContenedorService {
 
     constructor() {
         super(Author);
     }
 
+    static getInstance() {
+        if (!instance) {
+            instance = new AuthorService();
+        }
+
+        return instance;
+    }
+
     async getAllAuthors() {
         try {
             return await this.getAll();
         } catch (error) {
-            console.error('Sucedió un errror', error);
+            logger.error(new CustomError(500, error));
         }
     }
 
@@ -19,7 +30,7 @@ export class AuthorService extends ContenedorService {
         try {
             return await this.create(data);
         } catch (error) {
-            console.error('Sucedió un error: ', error);
+            logger.error(new CustomError(500, error));
         }
     }
 
@@ -27,7 +38,7 @@ export class AuthorService extends ContenedorService {
         try {
             return await this.model.findOne({ email });
         } catch (error) {
-            console.error('Sucedió un error: ', error);
+            logger.error(new CustomError(500, error));
         }
     }
 }

@@ -3,18 +3,29 @@ import Message from '../models/Message';
 import { AuthorService } from "./AuthorService";
 import { ANONYMOUS_AVATAR } from '../config';
 import logger from "../shared/logger";
+import { CustomError } from "../shared/CustomError";
 
+
+let instance = null;
 export class MessageService extends ContenedorService {
 
     constructor() {
         super(Message);
     }
 
+    static getInstance() {
+        if (!instance) {
+            instance = new MessageService();
+        }
+
+        return instance;
+    }
+
     async getAllMessages() {
         try {
             return await this.getAll();
         } catch (error) {
-            logger.error('Sucedió un errror', error);
+            logger.error(new CustomError(500, error));
         }
     }
 
@@ -22,7 +33,7 @@ export class MessageService extends ContenedorService {
         try {
             return await this.getById(id);
         } catch (error) {
-            logger.error('Sucedió un errror', error);
+            logger.error(new CustomError(500, error));
         }
     }
 
@@ -30,7 +41,7 @@ export class MessageService extends ContenedorService {
         try {
             return await this.create(data);
         } catch (error) {
-            logger.error('Sucedió un error: ', error);
+            logger.error(new CustomError(500, error));
         }
     }
 
@@ -38,7 +49,7 @@ export class MessageService extends ContenedorService {
         try {
             return await this.getAll().populate('author');
         } catch (error) {
-            logger.error('Sucedió un error: ', error);
+            logger.error(new CustomError(500, error));
         }
     }
 
@@ -59,7 +70,7 @@ export class MessageService extends ContenedorService {
                 return await this.createMessage({ author: anonymousAuthor._id, text: data.text });
             }
         } catch (error) {
-            logger.error('Sucedió un error: ', error);
+            logger.error(new CustomError(500, error));
         }
     }
 }

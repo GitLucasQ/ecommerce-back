@@ -27,9 +27,13 @@ var _Cart = _interopRequireDefault(require("../models/Cart"));
 
 var _logger = _interopRequireDefault(require("../shared/logger"));
 
+var _CustomError = require("../shared/CustomError");
+
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+var instance = null;
 
 var CartService = /*#__PURE__*/function (_ContenedorService) {
   (0, _inherits2["default"])(CartService, _ContenedorService);
@@ -62,7 +66,7 @@ var CartService = /*#__PURE__*/function (_ContenedorService) {
                 _context.prev = 6;
                 _context.t0 = _context["catch"](0);
 
-                _logger["default"].error('Sucedió un error', _context.t0);
+                _logger["default"].error(new _CustomError.CustomError(500, _context.t0));
 
               case 9:
               case "end":
@@ -97,7 +101,7 @@ var CartService = /*#__PURE__*/function (_ContenedorService) {
                 _context2.prev = 6;
                 _context2.t0 = _context2["catch"](0);
 
-                _logger["default"].error('Sucedió un error', _context2.t0);
+                _logger["default"].error(new _CustomError.CustomError(500, _context2.t0));
 
               case 9:
               case "end":
@@ -113,6 +117,15 @@ var CartService = /*#__PURE__*/function (_ContenedorService) {
 
       return createNewCart;
     }()
+  }], [{
+    key: "getInstance",
+    value: function getInstance() {
+      if (!instance) {
+        instance = new CartService();
+      }
+
+      return instance;
+    }
   }]);
   return CartService;
 }(_ContenedorMongo.ContenedorService);

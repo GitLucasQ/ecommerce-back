@@ -24,33 +24,31 @@ var principal = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log(req.session);
-
             if (!req.session.passport) {
-              _context.next = 8;
+              _context.next = 7;
               break;
             }
 
-            _context.next = 4;
+            _context.next = 3;
             return userService.getById(req.session.passport.user);
 
-          case 4:
+          case 3:
             foundedUser = _context.sent;
             res.render('index', {
               data: {
                 name: foundedUser.email
               }
             });
-            _context.next = 9;
+            _context.next = 8;
             break;
 
-          case 8:
+          case 7:
             res.redirect('/login');
 
-          case 9:
+          case 8:
             _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
 
-          case 10:
+          case 9:
           case "end":
             return _context.stop();
         }

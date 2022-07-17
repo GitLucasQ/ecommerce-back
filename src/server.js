@@ -67,8 +67,9 @@ httpServer.listen(PORT, () => {
     console.log(`Server listening on http://localhost:${PORT} - process ID: ${process.pid} - ${new Date().toLocaleString()}`);
 })
 
-const productService = new ProductService();
-const messageService = new MessageService();
+// SINGLETON
+const productService = ProductService.getInstance();
+const messageService = MessageService.getInstance();
 
 
 io.on('connection', async (socket) => {

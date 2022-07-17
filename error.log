@@ -30,3 +30,17 @@
 {"level":"error","message":"Ruta GET /favicon.ico no existente"}
 {"level":"error","message":"Ruta GET /favicon.ico no existente"}
 {"level":"error","message":"Ruta GET /favicon.ico no existente"}
+{"level":"error","message":"Ruta GET /favicon.ico no existente"}
+{"level":"error","message":"Ruta GET /assets/css/login.css no existente"}
+{"level":"error","message":"Ruta GET /assets/css/login.css no existente"}
+{"level":"error","message":"Ruta GET /assets/css/login.css no existente"}
+{"level":"error","message":"Ruta GET /favicon.ico no existente"}
+{"level":"error","message":"Ruta GET /assets/css/login.css no existente"}
+{"level":"error","message":"Ruta GET /assets/css/login.css no existente"}
+{"level":"error","message":"Ruta GET /src/assets/css/login.css no existente"}
+{"level":"error","message":"Ruta GET /public/css/login.css no existente"}
+{"level":"error","message":"Ruta GET /public/css/login.css no existente"}
+{"level":"error","message":"Ruta GET /favicon.ico no existente"}
+{"level":"error","message":"Ruta GET /favicon.ico no existente"}
+{"level":"error","message":{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"62c1d8bc75596f59964cdb0\" (type string) at path \"user\" for model \"Cart\"","name":"CastError","path":"user","reason":{},"stringValue":"\"62c1d8bc75596f59964cdb0\"","value":"62c1d8bc75596f59964cdb0","valueType":"string"},"state":500}
+{"level":"error","message":{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"62c1d8bc75596f59964cdb0\" (type string) at path \"user\" for model \"Cart\"","name":"CastError","path":"user","reason":{},"stringValue":"\"62c1d8bc75596f59964cdb0\"","value":"62c1d8bc75596f59964cdb0","valueType":"string"},"state":500}
