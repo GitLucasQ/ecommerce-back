@@ -91,9 +91,12 @@ app.use(function (req, res) {
 
 httpServer.listen(PORT, function () {
   console.log("Server listening on http://localhost:".concat(PORT, " - process ID: ").concat(process.pid, " - ").concat(new Date().toLocaleString()));
-});
-var productService = new _ProductService.ProductService();
-var messageService = new _MessageService.MessageService();
+}); // SINGLETON
+
+var productService = _ProductService.ProductService.getInstance();
+
+var messageService = _MessageService.MessageService.getInstance();
+
 io.on('connection', /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(socket) {
     return _regenerator["default"].wrap(function _callee3$(_context3) {

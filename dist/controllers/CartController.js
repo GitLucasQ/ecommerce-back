@@ -23,9 +23,11 @@ var _MailNotification = require("../util/MailNotification");
 
 var _PhoneNotification = require("../util/PhoneNotification");
 
-var cartService = new _CartService.CartService();
-var productService = new _ProductService.ProductService();
-var userService = new _UserService.UserService();
+var cartService = _CartService.CartService.getInstance();
+
+var productService = _ProductService.ProductService.getInstance();
+
+var userService = _UserService.UserService.getInstance();
 
 var addNewProduct = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {

@@ -5,9 +5,9 @@ import logger from '../shared/logger';
 import { sendMailConfirmShop } from '../util/MailNotification';
 import { sendMessageToAdmin, sendSMSNotificationToUser } from '../util/PhoneNotification';
 
-const cartService = new CartService();
-const productService = new ProductService();
-const userService = new UserService();
+const cartService = CartService.getInstance();
+const productService = ProductService.getInstance();
+const userService = UserService.getInstance();
 
 export const addNewProduct = async (req, res) => {
     const { productId, quantity, user } = req.body;

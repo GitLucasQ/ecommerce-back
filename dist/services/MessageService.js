@@ -31,9 +31,13 @@ var _config = require("../config");
 
 var _logger = _interopRequireDefault(require("../shared/logger"));
 
+var _CustomError = require("../shared/CustomError");
+
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+var instance = null;
 
 var MessageService = /*#__PURE__*/function (_ContenedorService) {
   (0, _inherits2["default"])(MessageService, _ContenedorService);
@@ -64,7 +68,7 @@ var MessageService = /*#__PURE__*/function (_ContenedorService) {
                 _context.prev = 6;
                 _context.t0 = _context["catch"](0);
 
-                _logger["default"].error('Sucedió un errror', _context.t0);
+                _logger["default"].error(new _CustomError.CustomError(500, _context.t0));
 
               case 9:
               case "end":
@@ -99,7 +103,7 @@ var MessageService = /*#__PURE__*/function (_ContenedorService) {
                 _context2.prev = 6;
                 _context2.t0 = _context2["catch"](0);
 
-                _logger["default"].error('Sucedió un errror', _context2.t0);
+                _logger["default"].error(new _CustomError.CustomError(500, _context2.t0));
 
               case 9:
               case "end":
@@ -134,7 +138,7 @@ var MessageService = /*#__PURE__*/function (_ContenedorService) {
                 _context3.prev = 6;
                 _context3.t0 = _context3["catch"](0);
 
-                _logger["default"].error('Sucedió un error: ', _context3.t0);
+                _logger["default"].error(new _CustomError.CustomError(500, _context3.t0));
 
               case 9:
               case "end":
@@ -169,7 +173,7 @@ var MessageService = /*#__PURE__*/function (_ContenedorService) {
                 _context4.prev = 6;
                 _context4.t0 = _context4["catch"](0);
 
-                _logger["default"].error('Sucedió un error: ', _context4.t0);
+                _logger["default"].error(new _CustomError.CustomError(500, _context4.t0));
 
               case 9:
               case "end":
@@ -243,7 +247,7 @@ var MessageService = /*#__PURE__*/function (_ContenedorService) {
                 _context5.prev = 20;
                 _context5.t0 = _context5["catch"](0);
 
-                _logger["default"].error('Sucedió un error: ', _context5.t0);
+                _logger["default"].error(new _CustomError.CustomError(500, _context5.t0));
 
               case 23:
               case "end":
@@ -259,6 +263,15 @@ var MessageService = /*#__PURE__*/function (_ContenedorService) {
 
       return addMessageChat;
     }()
+  }], [{
+    key: "getInstance",
+    value: function getInstance() {
+      if (!instance) {
+        instance = new MessageService();
+      }
+
+      return instance;
+    }
   }]);
   return MessageService;
 }(_ContenedorMongo.ContenedorService);
