@@ -7,7 +7,7 @@
     "start": "npm run build && node dist/server.js",
     "build": "babel src --out-dir dist --copy-files",
     "dev": "nodemon src/server.js --exec babel-node",
-    "test": "node src/util/benchmark.js"
+    "test": "mocha --require @babel/register src/tests --exit"
   },
   "author": "Luis Carlos Reyes Quino",
   "license": "ISC",
@@ -41,6 +41,9 @@
     "yargs": "^17.5.1"
   },
   "devDependencies": {
-    "@faker-js/faker": "^6.3.1"
+    "@faker-js/faker": "^6.3.1",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
+    "mocha": "^10.0.0"
   }
 }
