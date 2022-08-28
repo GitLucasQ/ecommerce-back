@@ -8,6 +8,7 @@ import fakerRoutes from './Faker.routes';
 import authRoutes from './Auth.routes';
 import loginRoutes from './Login.routes';
 import cartRoutes from './Cart.routes';
+import categoryRoutes from './Category.routes';
 
 const routes = Router();
 
@@ -20,6 +21,7 @@ routes.use('/api/productos-test', fakerRoutes);
 routes.use('/api/auth', authRoutes);
 routes.use('/', loginRoutes);
 routes.use('/api/cart', cartRoutes);
+routes.use('/api/category', categoryRoutes);
 
 
 export default routes;

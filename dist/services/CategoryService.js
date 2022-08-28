@@ -5,11 +5,9 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ProductService = void 0;
+exports.CategoryService = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
-
-var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/typeof"));
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
@@ -25,13 +23,11 @@ var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/ge
 
 var _ContenedorMongo = require("./ContenedorMongo");
 
-var _Product = _interopRequireDefault(require("../models/Product"));
+var _Category = _interopRequireDefault(require("../models/Category"));
 
 var _logger = _interopRequireDefault(require("../shared/logger"));
 
 var _CustomError = require("../shared/CustomError");
-
-var _mongoose = require("mongoose");
 
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 
@@ -39,20 +35,20 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 var instance = null;
 
-var ProductService = /*#__PURE__*/function (_ContenedorService) {
-  (0, _inherits2["default"])(ProductService, _ContenedorService);
+var CategoryService = /*#__PURE__*/function (_ContenedorService) {
+  (0, _inherits2["default"])(CategoryService, _ContenedorService);
 
-  var _super = _createSuper(ProductService);
+  var _super = _createSuper(CategoryService);
 
-  function ProductService() {
-    (0, _classCallCheck2["default"])(this, ProductService);
-    return _super.call(this, _Product["default"]);
+  function CategoryService() {
+    (0, _classCallCheck2["default"])(this, CategoryService);
+    return _super.call(this, _Category["default"]);
   }
 
-  (0, _createClass2["default"])(ProductService, [{
-    key: "getAllProducts",
+  (0, _createClass2["default"])(CategoryService, [{
+    key: "getAllCategories",
     value: function () {
-      var _getAllProducts = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee() {
+      var _getAllCategories = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee() {
         return _regenerator["default"].wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -78,16 +74,16 @@ var ProductService = /*#__PURE__*/function (_ContenedorService) {
         }, _callee, this, [[0, 6]]);
       }));
 
-      function getAllProducts() {
-        return _getAllProducts.apply(this, arguments);
+      function getAllCategories() {
+        return _getAllCategories.apply(this, arguments);
       }
 
-      return getAllProducts;
+      return getAllCategories;
     }()
   }, {
-    key: "getProductById",
+    key: "getCategoryById",
     value: function () {
-      var _getProductById = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(id) {
+      var _getCategoryById = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(id) {
         return _regenerator["default"].wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -113,17 +109,17 @@ var ProductService = /*#__PURE__*/function (_ContenedorService) {
         }, _callee2, this, [[0, 6]]);
       }));
 
-      function getProductById(_x) {
-        return _getProductById.apply(this, arguments);
+      function getCategoryById(_x) {
+        return _getCategoryById.apply(this, arguments);
       }
 
-      return getProductById;
+      return getCategoryById;
     }()
   }, {
-    key: "createNewProduct",
+    key: "createNewCategory",
     value: function () {
-      var _createNewProduct = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(data) {
-        var createdProduct;
+      var _createNewCategory = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(data) {
+        var createdCategory;
         return _regenerator["default"].wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
@@ -133,8 +129,8 @@ var ProductService = /*#__PURE__*/function (_ContenedorService) {
                 return this.create(data);
 
               case 3:
-                createdProduct = _context3.sent;
-                return _context3.abrupt("return", createdProduct === null || createdProduct === void 0 ? void 0 : createdProduct._id);
+                createdCategory = _context3.sent;
+                return _context3.abrupt("return", createdCategory === null || createdCategory === void 0 ? void 0 : createdCategory._id);
 
               case 7:
                 _context3.prev = 7;
@@ -150,16 +146,16 @@ var ProductService = /*#__PURE__*/function (_ContenedorService) {
         }, _callee3, this, [[0, 7]]);
       }));
 
-      function createNewProduct(_x2) {
-        return _createNewProduct.apply(this, arguments);
+      function createNewCategory(_x2) {
+        return _createNewCategory.apply(this, arguments);
       }
 
-      return createNewProduct;
+      return createNewCategory;
     }()
   }, {
-    key: "updateProduct",
+    key: "updateCategory",
     value: function () {
-      var _updateProduct = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(id, data) {
+      var _updateCategory = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(id, data) {
         return _regenerator["default"].wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
@@ -185,16 +181,16 @@ var ProductService = /*#__PURE__*/function (_ContenedorService) {
         }, _callee4, this, [[0, 6]]);
       }));
 
-      function updateProduct(_x3, _x4) {
-        return _updateProduct.apply(this, arguments);
+      function updateCategory(_x3, _x4) {
+        return _updateCategory.apply(this, arguments);
       }
 
-      return updateProduct;
+      return updateCategory;
     }()
   }, {
-    key: "deleteProduct",
+    key: "deleteCategory",
     value: function () {
-      var _deleteProduct = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(id) {
+      var _deleteCategory = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(id) {
         return _regenerator["default"].wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
@@ -221,61 +217,23 @@ var ProductService = /*#__PURE__*/function (_ContenedorService) {
         }, _callee5, this, [[0, 5]]);
       }));
 
-      function deleteProduct(_x5) {
-        return _deleteProduct.apply(this, arguments);
+      function deleteCategory(_x5) {
+        return _deleteCategory.apply(this, arguments);
       }
 
-      return deleteProduct;
-    }()
-  }, {
-    key: "findProductsByCategory",
-    value: function () {
-      var _findProductsByCategory = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(idCategory) {
-        return _regenerator["default"].wrap(function _callee6$(_context6) {
-          while (1) {
-            switch (_context6.prev = _context6.next) {
-              case 0:
-                _context6.prev = 0;
-                console.log((0, _typeof2["default"])(idCategory));
-                _context6.next = 4;
-                return this.model.find({
-                  category: _mongoose.Types.ObjectId(idCategory)
-                });
-
-              case 4:
-                return _context6.abrupt("return", _context6.sent);
-
-              case 7:
-                _context6.prev = 7;
-                _context6.t0 = _context6["catch"](0);
-
-                _logger["default"].error(new _CustomError.CustomError(500, _context6.t0));
-
-              case 10:
-              case "end":
-                return _context6.stop();
-            }
-          }
-        }, _callee6, this, [[0, 7]]);
-      }));
-
-      function findProductsByCategory(_x6) {
-        return _findProductsByCategory.apply(this, arguments);
-      }
-
-      return findProductsByCategory;
+      return deleteCategory;
     }()
   }], [{
     key: "getInstance",
     value: function getInstance() {
       if (!instance) {
-        instance = new ProductService();
+        instance = new CategoryService();
       }
 
       return instance;
     }
   }]);
-  return ProductService;
+  return CategoryService;
 }(_ContenedorMongo.ContenedorService);
 
-exports.ProductService = ProductService;
+exports.CategoryService = CategoryService;
