@@ -1,25 +1,24 @@
 import { ContenedorService } from "./ContenedorMongo";
-import Product from '../models/Product'
+import Category from '../models/Category'
 import logger from "../shared/logger";
 import { CustomError } from "../shared/CustomError";
-import { Types } from 'mongoose';
 
 
 let instance = null;
-export class ProductService extends ContenedorService {
+export class CategoryService extends ContenedorService {
     constructor() {
-        super(Product);
+        super(Category);
     }
 
     static getInstance() {
         if (!instance) {
-            instance = new ProductService();
+            instance = new CategoryService();
         }
 
         return instance;
     }
 
-    async getAllProducts() {
+    async getAllCategories() {
         try {
             return await this.getAll();
         } catch (error) {
@@ -27,7 +26,7 @@ export class ProductService extends ContenedorService {
         }
     }
 
-    async getProductById(id) {
+    async getCategoryById(id) {
         try {
             return await this.getById(id);
         } catch (error) {
@@ -35,16 +34,16 @@ export class ProductService extends ContenedorService {
         }
     }
 
-    async createNewProduct(data) {
+    async createNewCategory(data) {
         try {
-            const createdProduct = await this.create(data);
-            return createdProduct?._id;
+            const createdCategory = await this.create(data);
+            return createdCategory?._id;
         } catch (error) {
             logger.error(new CustomError(500, error));
         }
     }
 
-    async updateProduct(id, data) {
+    async updateCategory(id, data) {
         try {
             return await this.update(id, data);
         } catch (error) {
@@ -52,18 +51,9 @@ export class ProductService extends ContenedorService {
         }
     }
 
-    async deleteProduct(id) {
+    async deleteCategory(id) {
         try {
             await this.delete(id);
-        } catch (error) {
-            logger.error(new CustomError(500, error));
-        }
-    }
-
-    async findProductsByCategory(idCategory) {
-        try {
-            console.log(typeof(idCategory));
-            return await this.model.find({ category: Types.ObjectId(idCategory) });
         } catch (error) {
             logger.error(new CustomError(500, error));
         }

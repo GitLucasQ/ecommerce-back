@@ -19,8 +19,8 @@ export const getProductById = async (req, res) => {
 };
 
 export const createNewProduct = async (req, res) => {
-    const { name, price, photo } = req.body;
-    const createdProduct = await productService.createNewProduct({ name, price, photo });
+    const { name, price, photo, category } = req.body;
+    const createdProduct = await productService.createNewProduct({ name, price, photo, category });
 
     res.status(201).json(createdProduct);
     logger.info(`${req.method} ${req.originalUrl} - ${new Date().toLocaleString()}`);
@@ -40,5 +40,13 @@ export const deleteProduct = async (req, res) => {
     await productService.delete(id);
 
     res.status(200).send('Producto eliminado con éxito');
+    logger.info(`${req.method} ${req.originalUrl} - ${new Date().toLocaleString()}`);
+};
+
+export const getProductsByCategory = async (req, res) => {
+    const { id } = req.params;
+    const products = await productService.findProductsByCategory(id);
+
+    res.status(200).json(products);
     logger.info(`${req.method} ${req.originalUrl} - ${new Date().toLocaleString()}`);
 };
