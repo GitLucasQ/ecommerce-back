@@ -10,7 +10,11 @@ var _mongoose = require("mongoose");
 var ProductSchema = new _mongoose.Schema({
   name: String,
   price: Number,
-  photo: String
+  photo: String,
+  category: {
+    type: _mongoose.Schema.Types.ObjectId,
+    ref: "Category"
+  }
 }, {
   timestamps: true,
   versionKey: false

@@ -5,31 +5,31 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateProduct = exports.getProductsByCategory = exports.getProductById = exports.getAllProducts = exports.deleteProduct = exports.createNewProduct = void 0;
+exports.updateCategory = exports.getCategoryById = exports.getAllCategories = exports.deleteCategory = exports.createNewCategory = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
-var _ProductService = require("../services/ProductService");
+var _CategoryService = require("../services/CategoryService");
 
 var _logger = _interopRequireDefault(require("../shared/logger"));
 
-var productService = new _ProductService.ProductService();
+var categoryService = new _CategoryService.CategoryService();
 
-var getAllProducts = /*#__PURE__*/function () {
+var getAllCategories = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-    var products;
+    var categories;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return productService.getAllProducts();
+            return categoryService.getAllCategories();
 
           case 2:
-            products = _context.sent;
-            res.json(products);
+            categories = _context.sent;
+            res.json(categories);
 
             _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
 
@@ -41,27 +41,27 @@ var getAllProducts = /*#__PURE__*/function () {
     }, _callee);
   }));
 
-  return function getAllProducts(_x, _x2) {
+  return function getAllCategories(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
 
-exports.getAllProducts = getAllProducts;
+exports.getAllCategories = getAllCategories;
 
-var getProductById = /*#__PURE__*/function () {
+var getCategoryById = /*#__PURE__*/function () {
   var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res) {
-    var id, foundedProduct;
+    var id, foundedCategory;
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             id = req.params.id;
             _context2.next = 3;
-            return productService.getProductById(id);
+            return categoryService.getCategoryById(id);
 
           case 3:
-            foundedProduct = _context2.sent;
-            res.json(foundedProduct);
+            foundedCategory = _context2.sent;
+            res.json(foundedCategory);
 
             _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
 
@@ -73,33 +73,32 @@ var getProductById = /*#__PURE__*/function () {
     }, _callee2);
   }));
 
-  return function getProductById(_x3, _x4) {
+  return function getCategoryById(_x3, _x4) {
     return _ref2.apply(this, arguments);
   };
 }();
 
-exports.getProductById = getProductById;
+exports.getCategoryById = getCategoryById;
 
-var createNewProduct = /*#__PURE__*/function () {
+var createNewCategory = /*#__PURE__*/function () {
   var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
-    var _req$body, name, price, photo, category, createdProduct;
+    var _req$body, name, price, photo, createdCategory;
 
     return _regenerator["default"].wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            _req$body = req.body, name = _req$body.name, price = _req$body.price, photo = _req$body.photo, category = _req$body.category;
+            _req$body = req.body, name = _req$body.name, price = _req$body.price, photo = _req$body.photo;
             _context3.next = 3;
-            return productService.createNewProduct({
+            return categoryService.createNewCategory({
               name: name,
               price: price,
-              photo: photo,
-              category: category
+              photo: photo
             });
 
           case 3:
-            createdProduct = _context3.sent;
-            res.status(201).json(createdProduct);
+            createdCategory = _context3.sent;
+            res.status(201).json(createdCategory);
 
             _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
 
@@ -111,16 +110,16 @@ var createNewProduct = /*#__PURE__*/function () {
     }, _callee3);
   }));
 
-  return function createNewProduct(_x5, _x6) {
+  return function createNewCategory(_x5, _x6) {
     return _ref3.apply(this, arguments);
   };
 }();
 
-exports.createNewProduct = createNewProduct;
+exports.createNewCategory = createNewCategory;
 
-var updateProduct = /*#__PURE__*/function () {
+var updateCategory = /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
-    var id, _req$body2, name, price, photo, updatedProduct;
+    var id, _req$body2, name, price, photo, updatedCategory;
 
     return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) {
@@ -129,15 +128,15 @@ var updateProduct = /*#__PURE__*/function () {
             id = req.params.id;
             _req$body2 = req.body, name = _req$body2.name, price = _req$body2.price, photo = _req$body2.photo;
             _context4.next = 4;
-            return productService.updateProduct(id, {
+            return categoryService.updateCategory(id, {
               name: name,
               price: price,
               photo: photo
             });
 
           case 4:
-            updatedProduct = _context4.sent;
-            res.status(200).json(updatedProduct);
+            updatedCategory = _context4.sent;
+            res.status(200).json(updatedCategory);
 
             _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
 
@@ -149,14 +148,14 @@ var updateProduct = /*#__PURE__*/function () {
     }, _callee4);
   }));
 
-  return function updateProduct(_x7, _x8) {
+  return function updateCategory(_x7, _x8) {
     return _ref4.apply(this, arguments);
   };
 }();
 
-exports.updateProduct = updateProduct;
+exports.updateCategory = updateCategory;
 
-var deleteProduct = /*#__PURE__*/function () {
+var deleteCategory = /*#__PURE__*/function () {
   var _ref5 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(req, res) {
     var id;
     return _regenerator["default"].wrap(function _callee5$(_context5) {
@@ -165,10 +164,10 @@ var deleteProduct = /*#__PURE__*/function () {
           case 0:
             id = req.params.id;
             _context5.next = 3;
-            return productService["delete"](id);
+            return categoryService["delete"](id);
 
           case 3:
-            res.status(200).send('Producto eliminado con éxito');
+            res.status(200).send('Categoría eliminada con éxito');
 
             _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
 
@@ -180,41 +179,9 @@ var deleteProduct = /*#__PURE__*/function () {
     }, _callee5);
   }));
 
-  return function deleteProduct(_x9, _x10) {
+  return function deleteCategory(_x9, _x10) {
     return _ref5.apply(this, arguments);
   };
 }();
 
-exports.deleteProduct = deleteProduct;
-
-var getProductsByCategory = /*#__PURE__*/function () {
-  var _ref6 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(req, res) {
-    var id, products;
-    return _regenerator["default"].wrap(function _callee6$(_context6) {
-      while (1) {
-        switch (_context6.prev = _context6.next) {
-          case 0:
-            id = req.params.id;
-            _context6.next = 3;
-            return productService.findProductsByCategory(id);
-
-          case 3:
-            products = _context6.sent;
-            res.status(200).json(products);
-
-            _logger["default"].info("".concat(req.method, " ").concat(req.originalUrl, " - ").concat(new Date().toLocaleString()));
-
-          case 6:
-          case "end":
-            return _context6.stop();
-        }
-      }
-    }, _callee6);
-  }));
-
-  return function getProductsByCategory(_x11, _x12) {
-    return _ref6.apply(this, arguments);
-  };
-}();
-
-exports.getProductsByCategory = getProductsByCategory;
+exports.deleteCategory = deleteCategory;

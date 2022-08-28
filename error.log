@@ -1,0 +1,14 @@
+{"level":"error","message":{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"new\" (type string) at path \"_id\" for model \"Product\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"new\"","value":"new","valueType":"string"},"state":500}
+{"level":"error","message":{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"new\" (type string) at path \"_id\" for model \"Product\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"new\"","value":"new","valueType":"string"},"state":500}
+{"level":"error","message":"Ruta POST /api/product/ no existente"}
+{"level":"error","message":{},"state":500}
+{"level":"error","message":{},"state":500}
+{"level":"error","message":{},"state":500}
+{"level":"error","message":{},"state":500}
+{"level":"error","message":{},"state":500}
+{"level":"error","message":{},"state":500}
+{"level":"error","message":{},"state":500}
+{"level":"error","message":{},"state":500}
+{"level":"error","message":{},"state":500}
+{"level":"error","message":{},"state":500}
+{"level":"error","message":{},"state":500}

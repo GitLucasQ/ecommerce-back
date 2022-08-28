@@ -27,6 +27,8 @@ var _Login = _interopRequireDefault(require("./Login.routes"));
 
 var _Cart = _interopRequireDefault(require("./Cart.routes"));
 
+var _Category = _interopRequireDefault(require("./Category.routes"));
+
 var routes = (0, _express.Router)();
 routes.use('/api', _Util["default"]);
 routes.use('/info', _Info["default"]);
@@ -37,5 +39,6 @@ routes.use('/api/productos-test', _Faker["default"]);
 routes.use('/api/auth', _Auth["default"]);
 routes.use('/', _Login["default"]);
 routes.use('/api/cart', _Cart["default"]);
+routes.use('/api/category', _Category["default"]);
 var _default = routes;
 exports["default"] = _default;
