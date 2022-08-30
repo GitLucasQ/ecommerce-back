@@ -9,42 +9,7 @@ npm run build
 npm start
 ```
 
-###### Para la utilización de los módulos Forever y PM2 se utilzan los siguientes comandos para ejecutarse en la terminal:
+##### Para el testeo de las funcionalidades se implementó una parte front y otra mediante peticiones directas al back, las cuales se encuentran en la ruta del proyecto en el archivo request_Ecommerce.json.
 
-##### FOREVER
+##### Para montar el proyecto se utilizó el servicio de Heroku, el cuál se encuentra ejecutándose en el siguiente link: [Proyecto Ecommerce](https://ecom-coder.herokuapp.com/)
 
-Para ejecutar la aplicación indicando el puerto:
-```
-forever start dist/server.js 8081
-```
-
-Habilitar modo escucha:
-```
-forever start dist/server.js 8081 --watch
-```
-
-Para listar los procesos ejecutados:
-```
-forever list
-```
-
-##### PM2
-Para ejecutar la aplicación en modo FORK:
-```
-pm2 start dist/server.js
-```
-
-Modo escucha de FORK:
-```
-pm2 start dist/server.js --watch -- 8081
-```
-
-Para ejecutar la aplicación en modo CLUSTER:
-```
-pm2 start dist/server.js -i max -- 8082
-```
-
-Modo escucha de CLUSTER:
-```
-pm2 start dist/server.js -i max --watch -- 8082
-```
